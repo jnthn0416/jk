@@ -1,0 +1,91 @@
+#include <iostream> // library for standard input output
+#include <cstdlib> // library for generating random numbers
+#include <ctime> // library for using time
+#include <string.h> // library for usinf strings 
+
+using namespace std;
+
+// program driver
+int main()
+{
+    short int n; // n for taking number form user
+    short randomNum; // randomNum for storing random number
+    short int count = 1; // count for counting number of attempts
+    string checker;  // to check whether user will play again or quit the game
+   
+    // printing text on Console using cout
+    cout << "                                 Number Guessing Game"  << endl;  
+    cout << "°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°°" << endl << endl;
+    cout << "So you have to Guess number between (1 - 100)." << endl;
+    
+    // this do while loop helps user if he want to play again or quit the game
+    do{
+    cout << endl << "START" << endl << endl; // this statment help user to recognise that game is started
+    
+    srand(time(0)); // this is use to generate random number everytime
+    
+    randomNum = 1 + rand() % 100; // assign randomly generated number to randomNum
+    // rand() is use for generating random number .% is use to set limit
+    
+    // if you uncomment this below statement then you can see that randomly generated number
+    // cout << randomNum << endl;
+    
+    cout << "So Enter your 1st number :- " << endl;
+    
+    // do while loop because code must be executed once 
+    do
+    {
+      cin >> n; // accepting number from user in n using cin
+
+      // checking whether number given by user is less than 100 or not is not then else code will execute
+      if( n <= 100 ) 
+      {
+         // if number given by user is greater than randomly generated value then asking for smaller number
+         if( n > randomNum )
+         {
+           cout << "Give Smaller number please !" << endl;
+         }
+      
+         // if number given by user is less than randomly generated value then asking for bigger  number
+         else if( n < randomNum )
+         {
+           cout << "Give Bigger number please !" << endl;
+         }
+      
+         // else number will be equal to randomly generated value
+         else
+         {
+           cout << endl;
+           cout << "Perfect Guess.";
+           cout << "The Number was :- " << randomNum << endl; // displaying the randomly generated number
+           cout << "YOU WON !! " << endl << endl;
+           cout << "Your Total attempts :- " << count << endl; // printing the number of attempts of user by count 
+         }
+         count++;  // increasing the count by 1 after completion of iteration
+       }
+       
+       // if giving number by user is not less than 100 then 
+       else
+       {
+         cout << "INVALID INPUT !!" << endl << endl;
+         break;
+       }
+       
+    }while( n != randomNum );  
+    // if number giving by user not equal to randomly generated number then do while loop again work till condition get false
+    
+    cout << endl << "Enter 'play' for restarting the game ." << endl;
+    cout << "Otherwise enter 'quit' for ending the game." << endl;
+    cout << "Type 'play' & 'quit' in lowercase only" << endl << endl;
+    cin >> checker; // taking user input whether he /she wants to play or quit
+    
+    if( checker == "quit" ) // if user give quit the game will be ended
+    {
+      cout << endl << "You Quit the game.Game is Ended\nTHANK YOU !! " << endl;
+      cout << " Don't Forget to like this!! \n                                           - regards Shivam Vishwakarma";
+    }
+    count = 1; // if player play again an again for that setting count = 1;
+    }while( checker == "play" ); // if user gives play then this loop starts again
+   
+    return 0;
+}   
